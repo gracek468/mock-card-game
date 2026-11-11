@@ -23,9 +23,14 @@ class test_task(unittest.TestCase):
         self.assertEqual(num, 3)
         #get_game_info returns both the values so I don't understand how the return value is just meant to be the interger 3
 
-    def test_get_integer_max_attempts(self):
+    @patch('card_game.communication.ConsoleInOut.get_string')
+    def test_get_integer_max_attempts(self, mock_get_string):
         #Sub-task 3 – Mock Console Input With Built In
-        pass
+        
+        mock_get_string.return_value = "abc"
+        (get_integer())
+
+        self.assert_any_call(5, get_string)
 
     def test_get_csv_rows(self):
         #Sub-task 4 – Mock File Load
